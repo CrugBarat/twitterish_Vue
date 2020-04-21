@@ -1,28 +1,30 @@
 <template lang="html">
   <div class="twitter-container">
     <div class="twitter">
-      <header>
-        <span>
-          <div class="twt-img-container">
-            <img class="twitter-image" src="./assets/twitter.png" alt="">
-          </div>
-          <div class="twt-input-container">
-            <input type="text" name="" value="" placeholder="What's happening?">
-          </div>
-        </span>
+      <header class="row">
+        <div class="twt-img-container">
+          <img class="twitter-image" src="./assets/twitter.png" alt="">
+        </div>
+        <div class="twt-input-container">
+          <input type="text" name="" value="" placeholder="What's happening?">
+        </div>
       </header>
       <section>
         <div class="tweets" v-for="tweet in tweets">
-          <div class="usr-img-container">
-            <img class="user-image" v-bind:src="tweet.img" alt="">
-          </div>
-          <div class="usr-twt-container">
-            <span class="user-name">{{tweet.name}} </span>
-            <span class="user-handle">{{tweet.handle}}</span>
-            <p>{{tweet.tweet}}</p>
+          <div class="row">
+            <div class="usr-img-container">
+              <img class="user-image" v-bind:src="tweet.img" alt="">
+            </div>
+            <div class="usr-twt-container">
+              <span class="user-name">{{tweet.name}} </span>
+              <span class="user-handle">{{tweet.handle}}</span>
+              <p>{{tweet.tweet}}</p>
+            </div>
           </div>
           <div class="usr-likes-container">
-            <p>{{tweet.likes}}</p>
+            <div class="likes">
+              <p><img class="like-img" src="./assets/like.png" alt="">{{tweet.likes}}</p>
+            </div>
           </div>
         </div>
       </section>
@@ -69,36 +71,80 @@ export default {
 <style lang="css" scoped>
 
 .twitter-container {
-  border-style: solid;
+  /* border-style: solid; */
   display: block;
   text-align: center;
   height: 100vh;
 }
 
 .twitter {
-  border-style: solid;
+  /* border-style: solid; */
   display: inline-block;
   text-align: left;
+  width: auto;
 }
 
 .twt-img-container {
-  border-style: solid;
+  /* border-style: solid; */
+  float: left;
+  width: 10%;
+  margin-top: 6px;
+  padding-top: 10px;
 }
 
 .twt-input-container {
-  border-style: solid;
+  /* border-style: solid; */
+  float: left;
+  width: 85%;
+  margin-top: 6px;
+  padding-top: 10px;
+  clear: none;
 }
 
 .usr-img-container {
-  border-style: solid;
+  /* border-style: solid; */
+  float: left;
+  width: 15%;
+  margin-top: 6px;
+  padding-top: 8px;
+  padding-left: 15px;
 }
 
 .usr-twt-container{
-  border-style: solid;
+  /* border-style: solid; */
+  float: left;
+  width: 75%;
+  margin-top: 6px;
+  padding-top: 8px;
+  padding-left: 8px;
+  clear: none;
 }
 
 .usr-likes-container {
-  border-style: solid;
+  /* border-style: solid; */
+  height: 35px;
+  color: #8C9AA6;
+}
+
+p {
+  margin-top: 4px;
+}
+
+.likes {
+  /* border-style: solid; */
+  width: 50px;
+  height: 35px;
+  text-align: center;
+}
+
+.like-img {
+  height: 18px
+}
+
+.row:after {
+  content: "";
+  display: table;
+  clear: both;
 }
 
 
