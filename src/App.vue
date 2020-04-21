@@ -23,7 +23,7 @@
           </div>
           <div class="usr-likes-container">
             <div class="likes">
-              <p><img class="like-img" src="./assets/like.png" alt="">{{tweet.likes}}</p>
+              <p><button class="like-button" v-on:click="tweet.likes += 1"><img class="like-img" src="./assets/like.png" alt=""></button>{{tweet.likes}}</p>
             </div>
           </div>
         </div>
@@ -31,6 +31,8 @@
     </div>
   </div>
 </template>
+
+
 
 <script>
 export default {
@@ -64,9 +66,17 @@ export default {
         }
       ]
     }
+  },
+  methods: {
+    addlike: function () {
+      this.tweets.likes +=1;
+    }
   }
 }
 </script>
+
+
+
 
 <style lang="css" scoped>
 
@@ -139,6 +149,18 @@ p {
 
 .like-img {
   height: 18px
+}
+
+.like-button {
+  background: none;
+  border: none;
+  padding: 0;
+  margin: 0;
+  border-radius: 50%;
+}
+
+button:focus {
+  outline: none;
 }
 
 .row:after {
