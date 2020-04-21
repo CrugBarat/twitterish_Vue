@@ -1,13 +1,20 @@
 <template lang="html">
+
   <div class="twitter-container">
     <div class="twitter">
       <header class="row">
+        <form v-on:submit.prevent="addTweet">
         <div class="twt-img-container">
-          <img class="twitter-image" src="./assets/twitter.png" alt="">
+          <img class="twitter-image" src="./assets/twitter.png">
         </div>
         <div class="twt-input-container">
-          <input type="text" name="" value="" placeholder="What's happening?">
+          <input type="text" v-model="newTweet.tweet" placeholder="What's happening?">
+          <select v-model="newTweet.handle">
+            <option v-for="tweet in tweets">{{tweet.handle}}</option>
+          </select>
+          <input type="submit" name="" value="Tweet">
         </div>
+      </form>
       </header>
       <section>
         <div class="tweets" v-for="tweet in tweets">
@@ -64,12 +71,37 @@ export default {
           tweet: 'Beauty in the struggle, ugliness in the success.',
           likes: 18,
         }
-      ]
+      ],
+      newTweet: {
+        id: 0,
+        name: "",
+        handle: "",
+        img: "",
+        tweet: "",
+        likes: 0,
+      }
     }
   },
   methods: {
-    addlike: function () {
-      this.tweets.likes +=1;
+    addTweet: function () {
+
+      const handle = this.newTweet.handle;
+      const tweetObject = this.tweets.find(tweet => tweet.handle === handle);
+
+      this.newTweet.id = tweetObject.id;
+      this.newTweet.name = tweetObject.name;
+      this.newTweet.img = tweetObject.img;
+
+      this.tweets.unshift(this.newTweet);
+
+      this.newTweet = {
+        id: 0,
+        name: "",
+        handle: "",
+        img: "",
+        tweet: "",
+        likes: 0,
+      }
     }
   }
 }
@@ -79,6 +111,11 @@ export default {
 
 
 <style lang="css" scoped>
+
+form {
+  width: 500px;
+  max-width: 500px;
+}
 
 .twitter-container {
   /* border-style: solid; */
@@ -97,15 +134,16 @@ export default {
 .twt-img-container {
   /* border-style: solid; */
   float: left;
-  width: 10%;
+  width: 20%;
   margin-top: 6px;
   padding-top: 10px;
+  text-align: center;
 }
 
 .twt-input-container {
   /* border-style: solid; */
-  float: left;
-  width: 85%;
+  float: right;
+  width: 75%;
   margin-top: 6px;
   padding-top: 10px;
   clear: none;
@@ -128,6 +166,7 @@ export default {
   padding-top: 8px;
   padding-left: 8px;
   clear: none;
+  word-wrap: break-word;
 }
 
 .usr-likes-container {
@@ -151,7 +190,7 @@ p {
   height: 18px
 }
 
-.like-button {
+button {
   background: none;
   border: none;
   padding: 0;
@@ -180,10 +219,13 @@ input[type=text] {
   color: #8C9AA6;
   font-weight: bold;
   width: 300px;
+  display: inline-block;
 }
 
 .tweets {
   border: solid 1px #E6ECF0;
+  width: 500px;
+  max-width: 500px;
 }
 
 .user-image {
@@ -197,6 +239,10 @@ input[type=text] {
 
 .user-handle {
   color: #8C9AA6;
+}
+
+select {
+  width: 1px;
 }
 
 </style>
