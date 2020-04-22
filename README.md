@@ -11,7 +11,7 @@ A basic mock Twitter app using:
 
 **Markup/Styling**: HTML5/CSS3
 
-The mock Twitter app can dynamically add new tweets. Like and Retweet quantity can be increased dynamically. Top tweets can be toggled on and off using Top/Latest buttons.
+The mock Twitter app can dynamically add new tweets. Like and Retweet quantity can be increased dynamically. Top tweets can be toggled on and off using Top/Latest buttons. Total likes can also be viewed.
 
 This exercise was tasked to me by CodeClan, Glasgow where I studied towards a PDA Level 8 in Professional Software Development. The exercise brief can be found below.
 
