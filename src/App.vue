@@ -255,7 +255,7 @@ select {
 .explore {
   /* border-style: solid; */
   width: 60px;
-  height: 30px;
+  height: 20px;
   margin-left: 37px;
   font-weight: 700;
   font-size: 18px;
@@ -265,7 +265,7 @@ select {
   width: 25%;
   height: 20px;
   /* border-style: solid; */
-  padding-top: 5px;
+  padding: 0;
   margin: 0;
   display: inline-block;
 }
