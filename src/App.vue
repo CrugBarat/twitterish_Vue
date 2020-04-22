@@ -9,10 +9,10 @@
           </div>
           <div class="twt-input-container">
             <input type="text" v-model="newTweet.tweet" placeholder="What's happening?">
-            <select v-model="newTweet.handle">
+            <select v-model="newTweet.handle" required>
               <option v-for="tweet in tweets">{{tweet.handle}}</option>
             </select>
-            <input type="submit" name="" value="Tweet">
+            <input class="tweet-butn" type="submit" value="Tweet">
           </div>
         </form>
       </header>
@@ -25,10 +25,10 @@
           <div class="menu-container">
             <div class="row">
               <div class="top-container">
-                <button v-on:click.prevent="topLikes" type="submit">Top</button>
+                <button class="menu-butn-unclicked" v-on:click.prevent="topLikes" type="submit">Top</button>
               </div>
               <div class="top-container">
-                <button v-on:click.prevent="latestLikes" type="submit">Latest</button>
+                <button class="menu-butn-unclicked" v-on:click.prevent="latestLikes" type="submit">Latest</button>
               </div>
             </div>
           </div>
@@ -49,8 +49,17 @@
             </div>
           </div>
           <div class="usr-likes-container">
-            <div class="likes">
-              <p><button class="like-button" v-on:click="tweet.likes += 1"><img class="like-img" src="./assets/like.png" alt=""></button>{{tweet.likes}}</p>
+            <div class="row">
+              <div class="icon-space"></div>
+              <div class="icons">
+                <p><img class="icon-img-comment" src="./assets/comment.png"></p>
+              </div>
+              <div class="icons">
+                <p><button class="retweet-button" v-on:click="tweet.retweets += 1"><img class="icon-img-retweet" src="./assets/retweet.png" alt=""></button>{{tweet.retweets}}</p>
+              </div>
+              <div class="icons">
+                <p><button class="like-button" v-on:click="tweet.likes += 1"><img class="icon-img-like" src="./assets/like.png" alt=""></button>{{tweet.likes}}</p>
+              </div>
             </div>
           </div>
         </div>
@@ -75,6 +84,7 @@ export default {
           img: 'https://semantic-ui.com/images/avatar2/large/matthew.png',
           tweet: "If you don't succeed, dust yourself off and try again.",
           likes: 10,
+          retweets: 10,
         },
         {
           id: 2,
@@ -83,6 +93,7 @@ export default {
           img: 'https://semantic-ui.com/images/avatar2/large/molly.png',
           tweet: 'Better late than never but never late is better.',
           likes: 12,
+          retweets: 7
         },
         {
           id: 3,
@@ -91,6 +102,7 @@ export default {
           img: 'https://semantic-ui.com/images/avatar2/large/elyse.png',
           tweet: 'Beauty in the struggle, ugliness in the success.',
           likes: 18,
+          retweets: 5
         }
       ],
       newTweet: {
@@ -100,6 +112,7 @@ export default {
         img: "",
         tweet: "",
         likes: 0,
+        retweets: 0
       },
       likeAmount: 0
     }
@@ -183,36 +196,53 @@ form.new-tweet {
 .twt-img-container {
   /* border-style: solid; */
   float: left;
-  width: 20%;
+  width: 10%;
+  height: 34px;
   margin-top: 6px;
-  padding-top: 10px;
-  text-align: center;
+  padding-top: 5px;
+  text-align: right;
 }
 
 .twitter-image {
-  height: 30px;
+  height: 35px;
 }
 
 .twt-input-container {
   /* border-style: solid; */
   float: right;
-  width: 75%;
+  width: 85%;
+  height: 34px;
   margin-top: 6px;
   padding-top: 10px;
   clear: none;
 }
 
 input[type=text] {
-  border-radius: 25%;
+  border-radius: 15%;
   background-color: #E6ECF0;
   color: #8C9AA6;
   font-weight: bold;
-  width: 300px;
+  font-size: 15px;
+  width: 310px;
+  height: 18px;
   display: inline-block;
+  margin-right: 15px;
 }
 
 select {
-  width: 1px;
+  width: 10px;
+  margin-right: 15px;
+}
+
+.tweet-butn {
+  border-radius: 15%;
+  font-size: 15px;
+  background-color: #00acee;
+  color: #fff;
+}
+
+.tweet-butn:focus {
+  outline: none;
 }
 
 /* FORM END  */
@@ -223,7 +253,7 @@ select {
 
 .overall-menu-container {
   /* border-style: solid; */
-  padding-top: 15px;
+  padding-top: 10px;
 
 }
 
@@ -237,7 +267,7 @@ select {
   /* border-style: solid; */
   width: 60px;
   height: 30px;
-  margin-left: 45px;
+  margin-left: 37px;
   font-weight: 700;
   font-size: 18px;
 }
@@ -245,16 +275,35 @@ select {
 .top-container {
   width: 20%;
   height: 20px;
-  color: #8C9AA6;
+
   /* border-style: solid; */
-  padding-top: 25px;
+  padding-top: 5px;
   margin: 0;
   display: inline-block;
 }
 
-.top-container:hover {
-  background-color: #EAF5FE;
+.menu-butn-unclicked {
+  font-size: 22px;
+  color: #8C9AA6;
+  padding-top: 20px;
+  padding-right: 10px;
+  padding-left: 10px;
+  padding-bottom: 10px;
+  /* border-style: solid; */
+  border-radius: 0%;
 }
+
+.menu-butn-unclicked:hover {
+    background-color: #EAF5FE;
+    color: #00acee;
+}
+
+
+
+/* .menu-butn-clicked {
+font-size: 18px;
+color: #00acee;
+} */
 
 /* MENU END  */
 
@@ -307,15 +356,44 @@ select {
   color: #8C9AA6;
 }
 
-.like-img {
-  height: 18px
+.icon-space {
+  /* border-style: solid; */
+  width: 17%;
+  height: 25px;
+  text-align: left;
+  float: left;
 }
 
-.likes {
+.icons {
   /* border-style: solid; */
-  width: 50px;
-  height: 35px;
-  text-align: center;
+  width: 20%;
+  height: 25px;
+  text-align: left;
+  float: left;
+}
+
+.icon-img-comment {
+  height: 18px;
+  margin-left: 10px;
+}
+
+.icon-img-retweet {
+  height: 18px;
+  margin-right: 10px;
+}
+
+.icon-img-retweet:hover {
+  background-color: #EAF5FE;
+}
+
+.icon-img-like {
+  height: 18px;
+  margin-right: 10px;
+
+}
+
+.icon-img-like:hover {
+  background-color: #EAF5FE;
 }
 
 p {
@@ -336,6 +414,10 @@ button:focus {
 
 /* TWEETS END */
 
+hr {
+  padding: 0;
+  margin-top: 10px;
+}
 </style>
 
 
