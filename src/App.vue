@@ -174,7 +174,7 @@ export default {
   text-align: left;
   width: auto;
   border: solid 2px #E6ECF0;
-  height: 95vh;
+  height: 100vh;
   border-radius: 5%;
 }
 
