@@ -33,7 +33,6 @@
             </div>
           </div>
         </div>
-
       </section>
 
       <section>
@@ -102,8 +101,7 @@ export default {
         tweet: "",
         likes: 0,
       },
-      likeAmount: 0,
-      peopleSorted: false
+      likeAmount: 0
     }
   },
   computed: {
@@ -150,11 +148,6 @@ export default {
 
 <style lang="css" scoped>
 
-form.new-tweet {
-  width: 500px;
-  max-width: 500px;
-}
-
 .twitter-container {
   /* border-style: solid; */
   display: block;
@@ -172,6 +165,21 @@ form.new-tweet {
   border-radius: 5%;
 }
 
+.row:after {
+  content: "";
+  display: table;
+  clear: both;
+}
+
+
+
+/* FORM  */
+
+form.new-tweet {
+  width: 500px;
+  max-width: 500px;
+}
+
 .twt-img-container {
   /* border-style: solid; */
   float: left;
@@ -179,6 +187,10 @@ form.new-tweet {
   margin-top: 6px;
   padding-top: 10px;
   text-align: center;
+}
+
+.twitter-image {
+  height: 30px;
 }
 
 .twt-input-container {
@@ -190,6 +202,72 @@ form.new-tweet {
   clear: none;
 }
 
+input[type=text] {
+  border-radius: 25%;
+  background-color: #E6ECF0;
+  color: #8C9AA6;
+  font-weight: bold;
+  width: 300px;
+  display: inline-block;
+}
+
+select {
+  width: 1px;
+}
+
+/* FORM END  */
+
+
+
+/* MENU */
+
+.overall-menu-container {
+  /* border-style: solid; */
+  padding-top: 15px;
+
+}
+
+.menu-container {
+  /* border-style: solid; */
+  display: block;
+  text-align: center;
+}
+
+.explore {
+  /* border-style: solid; */
+  width: 60px;
+  height: 30px;
+  margin-left: 45px;
+  font-weight: 700;
+  font-size: 18px;
+}
+
+.top-container {
+  width: 20%;
+  height: 20px;
+  color: #8C9AA6;
+  /* border-style: solid; */
+  padding-top: 25px;
+  margin: 0;
+  display: inline-block;
+}
+
+.top-container:hover {
+  background-color: #EAF5FE;
+}
+
+/* MENU END  */
+
+
+
+/* TWEETS */
+
+.tweets {
+  border: solid 1px #E6ECF0;
+  width: 500px;
+  max-width: 500px;
+}
+
 .usr-img-container {
   /* border-style: solid; */
   float: left;
@@ -197,6 +275,11 @@ form.new-tweet {
   margin-top: 6px;
   padding-top: 8px;
   padding-left: 15px;
+}
+
+.user-image {
+  height: 60px;
+  border-radius: 50%;
 }
 
 .usr-twt-container{
@@ -210,14 +293,22 @@ form.new-tweet {
   word-wrap: break-word;
 }
 
+.user-name {
+  font-weight: 700;
+}
+
+.user-handle {
+  color: #8C9AA6;
+}
+
 .usr-likes-container {
   /* border-style: solid; */
   height: 35px;
   color: #8C9AA6;
 }
 
-p {
-  margin-top: 4px;
+.like-img {
+  height: 18px
 }
 
 .likes {
@@ -227,8 +318,8 @@ p {
   text-align: center;
 }
 
-.like-img {
-  height: 18px
+p {
+  margin-top: 4px;
 }
 
 button {
@@ -243,85 +334,11 @@ button:focus {
   outline: none;
 }
 
-.row:after {
-  content: "";
-  display: table;
-  clear: both;
-}
-
-
-.twitter-image {
-  height: 30px;
-}
-
-input[type=text] {
-  border-radius: 25%;
-  background-color: #E6ECF0;
-  color: #8C9AA6;
-  font-weight: bold;
-  width: 300px;
-  display: inline-block;
-}
-
-.tweets {
-  border: solid 1px #E6ECF0;
-  width: 500px;
-  max-width: 500px;
-}
-
-.user-image {
-  height: 60px;
-  border-radius: 50%;
-}
-
-.user-name {
-  font-weight: 700;
-}
-
-.user-handle {
-  color: #8C9AA6;
-}
-
-select {
-  width: 1px;
-}
-
-.top-container {
-  width: 20%;
-  height: 20px;
-  color: #8C9AA6;
-  /* border-style: solid; */
-  padding-top: 25px;
-  margin: 0;
-  display: inline-block;
-}
-
-.menu-container {
-  /* border-style: solid; */
-  display: block;
-  text-align: center;
-}
-
-.overall-menu-container {
-  /* border-style: solid; */
-  padding-top: 15px;
-
-}
-
-.explore {
-  /* border-style: solid; */
-  width: 60px;
-  height: 30px;
-  margin-left: 45px;
-  font-weight: 700;
-  font-size: 18px;
-}
-
-.top-container:hover {
-  background-color: #EAF5FE;
-}
+/* TWEETS END */
 
 </style>
+
+
 
 <style>
 body {
