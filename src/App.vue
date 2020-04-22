@@ -37,9 +37,7 @@
 
       <section>
         <hr>
-        <div class="tweets">
-          <tweet-list-item v-for="(tweet, index) in filteredTweets" :key="index" :tweet="tweet"></tweet-list-item>
-        </div>
+          <tweet-list-item class="tweets" v-for="(tweet, index) in filteredTweets" :key="index" :tweet="tweet"></tweet-list-item>
       </section>
 
     </div>
@@ -279,17 +277,6 @@ select {
   color: #00acee;
 }
 
-button {
-  background: none;
-  border: none;
-  padding: 0;
-  margin: 0;
-  border-radius: 50%;
-}
-
-button:focus {
-  outline: none;
-}
 
 /* .menu-butn-clicked {
 font-size: 18px;
@@ -321,7 +308,20 @@ hr {
 
 
 <style>
+
 body {
   font-family: system-ui;
+}
+
+button {
+  background: none;
+  border: none;
+  padding: 0;
+  margin: 0;
+  border-radius: 50%;
+}
+
+button:focus {
+  outline: none;
 }
 </style>

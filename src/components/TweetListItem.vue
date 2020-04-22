@@ -29,12 +29,16 @@
 
 </template>
 
+
+
 <script>
 export default {
   name: 'tweet-list-item',
   props: ['tweet']
 }
 </script>
+
+
 
 <style lang="css" scoped>
 
@@ -126,18 +130,5 @@ export default {
 p {
   margin-top: 4px;
 }
-
-button {
-  background: none;
-  border: none;
-  padding: 0;
-  margin: 0;
-  border-radius: 50%;
-}
-
-button:focus {
-  outline: none;
-}
-
 
 </style>
