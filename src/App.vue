@@ -30,6 +30,11 @@
               <div class="top-container">
                 <button class="menu-butn-unclicked" v-on:click.prevent="latestLikes" type="submit">Latest</button>
               </div>
+              <div class="total-likes-container">
+                <a href="">
+                  <p class="before-hover after-hover"><span class="align">{{totalLikes}}</span></p>
+                </a>
+              </div>
             </div>
           </div>
         </div>
@@ -37,7 +42,7 @@
 
       <section>
         <hr>
-          <tweet-list-item class="tweets" v-for="(tweet, index) in filteredTweets" :key="index" :tweet="tweet"></tweet-list-item>
+        <tweet-list-item class="tweets" v-for="(tweet, index) in filteredTweets" :key="index" :tweet="tweet"></tweet-list-item>
       </section>
 
     </div>
@@ -102,6 +107,11 @@ export default {
       return this.tweets.filter((tweet) => {
         return tweet.likes >= this.likeAmount;
       });
+    },
+    totalLikes: function () {
+      return this.tweets.reduce((total, tweet) => {
+        return total + tweet.likes
+      }, 0)
     },
   },
   methods: {
@@ -252,9 +262,8 @@ select {
 }
 
 .top-container {
-  width: 20%;
+  width: 25%;
   height: 20px;
-
   /* border-style: solid; */
   padding-top: 5px;
   margin: 0;
@@ -277,6 +286,9 @@ select {
   color: #00acee;
 }
 
+.menu-button-unlclicked:hover {
+  content: 'Trending'
+}
 
 /* .menu-butn-clicked {
 font-size: 18px;
@@ -284,6 +296,47 @@ color: #00acee;
 } */
 
 /* MENU END  */
+
+
+
+/* TOTAL LIKES END */
+
+.total-likes-container{
+  width: 20%;
+  height: 20px;
+  /* border-style: solid; */
+  padding-top: 5px;
+  margin: 0;
+  display: inline-block;
+}
+
+a{
+    text-decoration:none;
+}
+
+.before-hover {
+  font-size: 22px;
+  color: #8C9AA6;
+  padding-top: 20px;
+  padding-right: 10px;
+  padding-left: 10px;
+  padding-bottom: 10px;
+  /* border-style: solid; */
+  border-radius: 0%;
+}
+
+.total-likes-container a p.after-hover span{
+  position: relative;
+}
+.total-likes-container:hover a p.after-hover span{
+  display: none;
+}
+.total-likes-container:hover a p.after-hover:after{
+  content: 'Σ Likes';
+}
+
+/* TOTAL LIKES END */
+
 
 
 
