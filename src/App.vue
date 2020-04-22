@@ -1,23 +1,44 @@
 <template lang="html">
-
   <div class="twitter-container">
     <div class="twitter">
+
       <header class="row">
-        <form v-on:submit.prevent="addTweet">
-        <div class="twt-img-container">
-          <img class="twitter-image" src="./assets/twitter.png">
-        </div>
-        <div class="twt-input-container">
-          <input type="text" v-model="newTweet.tweet" placeholder="What's happening?">
-          <select v-model="newTweet.handle">
-            <option v-for="tweet in tweets">{{tweet.handle}}</option>
-          </select>
-          <input type="submit" name="" value="Tweet">
-        </div>
-      </form>
+        <form class="new-tweet" v-on:submit.prevent="addTweet">
+          <div class="twt-img-container">
+            <img class="twitter-image" src="./assets/twitter.png">
+          </div>
+          <div class="twt-input-container">
+            <input type="text" v-model="newTweet.tweet" placeholder="What's happening?">
+            <select v-model="newTweet.handle">
+              <option v-for="tweet in tweets">{{tweet.handle}}</option>
+            </select>
+            <input type="submit" name="" value="Tweet">
+          </div>
+        </form>
       </header>
+
       <section>
-        <div class="tweets" v-for="tweet in tweets">
+        <div class="overall-menu-container">
+          <div class="explore">
+            <p>Explore</p>
+          </div>
+          <div class="menu-container">
+            <div class="row">
+              <div class="top-container">
+                <button v-on:click.prevent="topLikes" type="submit">Top</button>
+              </div>
+              <div class="top-container">
+                <button v-on:click.prevent="latestLikes" type="submit">Latest</button>
+              </div>
+            </div>
+          </div>
+        </div>
+
+      </section>
+
+      <section>
+        <hr>
+        <div class="tweets" v-for="tweet in filteredTweets">
           <div class="row">
             <div class="usr-img-container">
               <img class="user-image" v-bind:src="tweet.img" alt="">
@@ -35,6 +56,7 @@
           </div>
         </div>
       </section>
+
     </div>
   </div>
 </template>
@@ -79,10 +101,25 @@ export default {
         img: "",
         tweet: "",
         likes: 0,
-      }
+      },
+      likeAmount: 0,
+      peopleSorted: false
     }
   },
+  computed: {
+    filteredTweets: function () {
+      return this.tweets.filter((tweet) => {
+        return tweet.likes >= this.likeAmount;
+      });
+    },
+  },
   methods: {
+    topLikes: function () {
+      this.likeAmount = 11;
+    },
+    latestLikes: function () {
+      this.likeAmount = 0;
+    },
     addTweet: function () {
 
       const handle = this.newTweet.handle;
@@ -103,6 +140,7 @@ export default {
         likes: 0,
       }
     }
+
   }
 }
 </script>
@@ -112,7 +150,7 @@ export default {
 
 <style lang="css" scoped>
 
-form {
+form.new-tweet {
   width: 500px;
   max-width: 500px;
 }
@@ -129,6 +167,9 @@ form {
   display: inline-block;
   text-align: left;
   width: auto;
+  border: solid 2px #E6ECF0;
+  height: 100vh;
+  border-radius: 5%;
 }
 
 .twt-img-container {
@@ -243,6 +284,41 @@ input[type=text] {
 
 select {
   width: 1px;
+}
+
+.top-container {
+  width: 20%;
+  height: 20px;
+  color: #8C9AA6;
+  /* border-style: solid; */
+  padding-top: 25px;
+  margin: 0;
+  display: inline-block;
+}
+
+.menu-container {
+  /* border-style: solid; */
+  display: block;
+  text-align: center;
+}
+
+.overall-menu-container {
+  /* border-style: solid; */
+  padding-top: 15px;
+
+}
+
+.explore {
+  /* border-style: solid; */
+  width: 60px;
+  height: 30px;
+  margin-left: 45px;
+  font-weight: 700;
+  font-size: 18px;
+}
+
+.top-container:hover {
+  background-color: #EAF5FE;
 }
 
 </style>
