@@ -46,7 +46,7 @@ Your task is to create an app that displays a list of tweets and their details.
 npm install
 ```
 
-- Compile for development
+- Compile
 
 ```
 npm run serve
