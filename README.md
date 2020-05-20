@@ -54,4 +54,4 @@ npm run serve
 
 - Click the link below to open project in browser
 
-[LocalHost](http://localhost:8080/)
+- [LocalHost](http://localhost:8080/)
